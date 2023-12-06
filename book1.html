@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		*{
+			text-align: center;
+		}
+		.button{
+			background-color: lightgrey;
+			font-size: 100px;
+			line-height: 2cm;
+		}
+		.b1{
+			float: left;
+		}
+		.b2{
+			float: right;
+		}
+	</style>
+</head>
+
+<body>
+
+        <div class="button b1" onclick="l();"><</div>
+        <img src="" alt="loading....." id="img" width="550" height="838">
+	<div class="button b2" onclick="r();">></div>
+</body>
+<script>
+		
+		var a=document.getElementById('img');
+		function getUrl() { 
+			var url = location.search; //???url?"?"??????? 
+			var theRequest = new Object(); 
+			if (url.indexOf("?") != -1) {
+				var str = url.substr(1); 
+				strs = str.split("&"); 
+				for(var i = 0; i < strs.length; i ++) {
+					theRequest[strs[i].split("=")[0]]=decodeURIComponent(strs[i].split("=")[1]); 
+				} 
+			} 
+			return theRequest; 
+		} 
+		
+		var req = getUrl(); 
+		
+		var q = req['page'];
+		function l(){
+			if(q<2){
+				alert("已是第一页");
+			}
+			else window.open("https://mhtool.github.io/book1?page="+((Number(q)-1)),"self");
+		}
+		function r(){
+			//if(q<2){
+			//	alert("已是第一页");
+			//}
+			window.open("https://mhtool.github.io/book1?page="+((Number(q)+1)),"self");
+		}
+		//alert(query);
+		window.onload=function(){
+			if(q>0){
+                           // alert(1);
+                            a.src="https://blys.neocities.org/"+q+".jpg";
+                        }
+                        else{
+                        	window.open("https://mhtool.github.io/book1?page=1","self");
+                        }
+		}
+	</script>
+</html>
